@@ -23,6 +23,13 @@ public class LoginPageViewModel extends ViewModel   {
     public LoginPageViewModel(Activity activity) {
         this.activity = activity;
         this.loginStatus = new MutableLiveData<>();
+
+
+public class LoginPageViewModel extends ViewModel   {
+
+
+    public LoginPageViewModel(Activity activity) {
+
     }
 
     public void setLoginStatus(Boolean loginStatus) {
@@ -38,6 +45,7 @@ public class LoginPageViewModel extends ViewModel   {
     }
 
     public void setUserData(UserData userData) {
+<<<<<<< HEAD
         this.userData = userData;
         userData.setUserRoles();
     }
@@ -55,5 +63,16 @@ public class LoginPageViewModel extends ViewModel   {
                     }
                 });
         builder.show();
+=======
+
+    }
+
+    public void logIntoAccount(String userLogin, String userPassword){
+
+    }
+
+    public void setConnectionErrorAlert() {
+
+>>>>>>> fcdf5bd (creating a project skeleton based on architecture - client side)
     }
 }
