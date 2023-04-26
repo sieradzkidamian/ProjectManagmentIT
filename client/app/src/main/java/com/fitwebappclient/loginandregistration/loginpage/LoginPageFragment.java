@@ -169,3 +169,32 @@ public class LoginPageFragment extends Fragment implements Serializable, Checker
 //        }
 //    }
 }
+
+    }
+
+
+    }
+
+    private void handleLoginButton(View root) {
+
+    }
+
+    private void handleLoginAction(TextInputLayout userLoginLayout, TextInputLayout userPasswordLayout) {
+
+
+    }
+
+    private void showDialogWrongUserData() {
+
+    }
+
+    private void startAdminMainActivity(UserData userData) {
+
+    }
+
+    private void startUserMainActivity(UserData userData) {
+
+    }
+
+
+
