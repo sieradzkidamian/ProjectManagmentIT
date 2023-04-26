@@ -60,3 +60,55 @@ public ResponseEntity<?> registerUser(@RequestBody HashMap<String, String> param
         return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         }
+
+    @PostMapping(value = "/getAllCourses")
+    public ResponseEntity<?> getAllCourses() {
+        try {
+            return new ResponseEntity<>(coursesBl.getAllCourses(), HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/getCourses")
+    public ResponseEntity<?> getCourses(@RequestBody HashMap<String, Integer> parameters) {
+        try {
+            return new ResponseEntity<>(coursesBl.getCourse(parameters.get("courseId")), HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/addCourse")
+    public ResponseEntity<?> addCourse(@RequestBody HashMap<String, String> parameters) {
+        try {
+            coursesBl.addCourse(parameters.get("name"), parameters.get("description"), parameters.get("image"));
+            return new ResponseEntity<>(Collections.singletonMap("message", messages.getString("messageCourseHasBeenAdded")), HttpStatus.OK);
+        } catch (DevException exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/deleteCourse")
+    public ResponseEntity<?> deleteCourse(@RequestBody HashMap<String, Integer> parameters) {
+        try {
+            coursesBl.deleteCourse(parameters.get("courseId"));
+            return new ResponseEntity<>(Collections.singletonMap("message", messages.getString("messageCourseHasBeenDeleted")), HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/editCourse")
+    public ResponseEntity<?> editCourse(@RequestBody HashMap<String, String> parameters) {
+        try {
+            coursesBl.editCourse(Integer.valueOf(parameters.get("id")), parameters.get("name"), parameters.get("description"), parameters.get("image"));
+            return new ResponseEntity<>(Collections.singletonMap("message", messages.getString("messageCourseHasBeenChanged")), HttpStatus.OK);
+        } catch (DevException exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.OK);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(Collections.singletonMap("message", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
